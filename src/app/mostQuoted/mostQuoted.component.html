@@ -1,1 +1,7 @@
-<p>Ocean Ultra (4) and BigFoot (3) are the most frequently quoted lines of business.</p>
+<p *ngIf="isLoaded">
+  {{linesOfBusiness[0].name}} 
+  ({{linesOfBusiness[0].recentQuotes}}) and 
+  {{linesOfBusiness[1].name}} 
+  ({{linesOfBusiness[1].recentQuotes}}) 
+  are the most frequently quoted lines of business.
+</p>

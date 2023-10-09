@@ -25,7 +25,7 @@ export class LineOfBusinessComponent implements OnInit {
   add(name: string, description: string): void {
     name = name.trim();
     if (!name) { return; }
-    this.lineOfBusinessService.addLineOfBusiness({ name, description } as LineOfBusiness)
+    this.lineOfBusinessService.addLineOfBusiness({ name, description, recentQuotes: 0 } as LineOfBusiness)
       .subscribe(lineOfBusiness => {
         this.linesOfBusiness.push(lineOfBusiness);
       });
