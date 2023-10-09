@@ -1,6 +1,6 @@
 Thank you again for considering my application. I won't go into detail on my changes here, as I'm looking forward to discussing them with you soon!
 
-Sincerely,\n
+Sincerely,<br /> 
 David
 
 ![image](https://github.com/dgoelitz/ACICAngularCodingChallenge/assets/76196753/8efea8c1-2773-4c76-888e-a52ce7998862)
