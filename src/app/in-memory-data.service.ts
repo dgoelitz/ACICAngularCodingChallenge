@@ -8,11 +8,11 @@ import { LineOfBusiness } from './LineOfBusiness';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const linesOfBusiness = [
-      { id: 11, name: 'General Liability', description: 'Liability coverage for businesses.' },
-      { id: 12, name: 'Commercial Property', description: 'Property coverage for businesses.' },
-      { id: 13, name: 'Inland Marine', description: 'Coverage for tools and machinery on job sites.' },
-      { id: 14, name: 'Ocean Marine', description: 'Coverage for dock and boat repair businesses.' },
-      { id: 15, name: 'Garage', description: 'Coverage for auto repairs and car sales.' }
+      { id: 11, name: 'General Liability', description: 'Liability coverage for businesses.', recentQuotes: 0 },
+      { id: 12, name: 'Commercial Property', description: 'Property coverage for businesses.', recentQuotes: 0 },
+      { id: 13, name: 'Inland Marine', description: 'Coverage for tools and machinery on job sites.', recentQuotes: 0 },
+      { id: 14, name: 'Ocean Marine', description: 'Coverage for dock and boat repair businesses.', recentQuotes: 0 },
+      { id: 15, name: 'Garage', description: 'Coverage for auto repairs and car sales.', recentQuotes: 0 }
     ];
 
 
@@ -27,7 +27,18 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 108, quoteNumber: 'AC127PC', lineOfBusiness: 15 }
     ];
 
-    return {linesOfBusiness};
+    let recentQuotesMap: { [key: number]: number } = {};
+    for (let quote of recentQuotes) {
+      let lineId = quote.lineOfBusiness;
+      recentQuotesMap[lineId] = (recentQuotesMap[lineId] || 0) + 1;
+    }
+    for (let line of linesOfBusiness) {
+      if (recentQuotesMap[line.id] !== undefined) {
+        line.recentQuotes = recentQuotesMap[line.id];
+      }
+    }
+
+    return { linesOfBusiness };
   }
 
   // Overrides the genId method to ensure that a line of business always has an id.
